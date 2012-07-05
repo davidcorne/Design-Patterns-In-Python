@@ -1,0 +1,357 @@
+\documentclass[12pt, oneside]{book} %,oneside
+\setlength{\topmargin}{-.5in} % top margin is .5 in
+\setlength{\oddsidemargin}{0in} % left margin is 1 in on right pages
+\setlength{\evensidemargin}{0in} % same for left pages, 2-sided document
+\setlength{\textwidth}{6.5in} % leaves 1 in for right margin
+\setlength{\textheight}{9in}
+\linespread{1.6}
+
+% gets hyperling references
+\usepackage{hyperref}
+
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+
+% packages for the front page
+\usepackage{graphicx}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} %Create Hrule command for title page
+
+% colour for prettiness
+\usepackage{color}
+\usepackage[usenames, dvipsnames, table]{xcolor}
+
+% code syntax higlighting
+\usepackage{listings}
+\lstset{ %
+  language = Python,                % choose the language of the code
+  basicstyle = \scriptsize,         % the size of the fonts that are used for the code
+  % line number commands
+  numbers = left,                   % where to put the line-numbers
+  numberstyle = \scriptsize,        % the size of the fonts that are used for the line-numbers
+  stepnumber = 1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+  numbersep = 5pt,                  % how far the line-numbers are from the code
+  % generic options
+  backgroundcolor = \color{white},  % choose the background color.
+  showspaces = false,               % show spaces adding particular underscores
+  showstringspaces = false,         % underline spaces within strings
+  showtabs = true,                  % show tabs within strings adding particular underscores
+  frame = single,                   % adds a frame around the code
+  tabsize = 2,                      % sets default tabsize to 2 spaces
+  captionpos = b,                   % sets the caption-position to bottom
+  breaklines = true,                % sets automatic line breaking
+  breakatwhitespace = false,        % sets if automatic breaks should only happen at whitespace
+  escapeinside = {\%*}{*)},         % if you want to add a comment within your code
+  % syntax highlighting colours
+  keywordstyle = \color{Purple},
+  identifierstyle = \color{RoyalBlue},
+  commentstyle = \color{OliveGreen},
+  stringstyle = \color{Red}
+}
+
+
+% package for making the chapters big and blue
+\usepackage{quotchap}                       % change the \chapter command to give alrge numbers right alligned
+\colorlet{chaptergrey}{RoyalBlue}           % make the number blue
+\renewcommand*\sectfont{\color{RoyalBlue}}  % make the writing blue
+
+% reduce space after sections
+\usepackage{titlesec}
+\titlespacing\section{0pt}{8pt plus 2pt minus 2pt}{-2\parskip}
+
+\newcommand{\tmpsection}[1]{}
+\let\tmpsection=\section
+\renewcommand{\section}[1]{
+  { 
+    \samepage{
+      \vspace{10 mm} \linespread{0.75} \color{RoyalBlue}{
+        \noindent \HRule \tmpsection{#1} \noindent \HRule
+      }
+    }
+  }
+}
+
+% design pattern summary command
+\newcommand{\patternsummary}[4]{
+  \begin{center}
+    \begin{tabular}{|l|p{12cm} |}
+      \hline
+      \color{RoyalBlue}{Goal} & #1
+      \\
+      \hline
+      \color{RoyalBlue}{Motivation} & #2
+      \\ 
+      \hline
+      \color{RoyalBlue}{Pros} & #3
+      \\ 
+      \hline
+      \color{RoyalBlue}{Cons} & #4
+      \\ 
+      \hline
+    \end{tabular}
+  \end{center}
+}
+
+\begin{document}
+
+% title page
+\thispagestyle{empty}
+% Upper part of the page
+\begin{center}
+  \includegraphics[width=0.25\textwidth]{Python_Logo.png}\\[1cm]
+\end{center} 
+% Title
+\HRule \\[0.4cm]
+       {\Huge \bfseries \color{RoyalBlue}Design Patterns in Python} \\[0.4cm]
+       {\huge or How I Learned to Stop Worrying and Love The Gang of Four} \\[0.4cm]
+\HRule \\[1.5cm]
+
+% Author
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft}
+    \Large David Corne
+  \end{flushleft}
+\end{minipage}
+
+\vfill
+% Bottom of the page
+% {\large August 2012.}
+
+\frontmatter
+\tableofcontents
+
+\chapter{Acknowledgments}
+\mainmatter
+
+\chapter{Introduction}
+There are many places this is usful, there have been a few tries to do this.
+
+many patterns given to you by the language
+
+\section{Gang of Four}
+This influential book .......
+\cite{python-patterns-site} contains a few patterns and I have drawn from those
+
+
+\chapter{Creational}
+\label{creational}
+
+\section{Abstract Factory}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+Some kind of intro
+
+
+
+as said in chapter \ref{creational} in book \cite{GOF}
+
+\section{Builder}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Factory Method}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Prototype}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Singleton}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+This is certainly the most controversial pattern on this list. 
+
+
+\chapter{Structural}
+
+\section{Adapter}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Bridge}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Composite}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Decorator}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Facade}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Flyweight}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Proxy}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+
+\chapter{Behavioural}
+
+\section{Chain of Responsibility}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Command}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Interpreter}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Iterator}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Mediator}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Memento}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Observer}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{State}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Strategy}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Template Method}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Visitor}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\chapter{Non GOF Patterns/GUI Patterns}
+Use of Tkinter.
+
+\section{Model View Presenter}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+http://stackoverflow.com/questions/2056/what-are-mvp-and-mvc-and-what-is-the-difference
+
+\section{Model View Controller}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\section{Model View View-Model}
+% table of information for the start of a section
+\patternsummary{Goal}{Motivation}{Pros}{Cons}
+
+\chapter{Summary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part*{Appendicies}
+\addcontentsline{toc}{part}{Appendicies}
+\appendix
+\chapter{Creational Code Examples}
+
+\section{Abstract Factory}
+\lstinputlisting{Abstract_Factory.py}
+
+\section{Builder}
+\lstinputlisting{Builder.py}
+\section{Factory Method}
+\lstinputlisting{Factory_Method.py}
+\section{Prototype}
+\lstinputlisting{Prototype.py}
+\section{Singleton}
+\lstinputlisting{Singleton.py}
+
+\chapter{Structural Code Examples}
+
+\section{Adapter}
+\lstinputlisting{Adapter.py}
+\section{Bridge}
+\lstinputlisting{Bridge.py}
+\section{Composite}
+\lstinputlisting{Composite.py}
+\section{Decorator}
+\lstinputlisting{Decorator.py}
+\section{Facade}
+\lstinputlisting{Facade.py}
+\section{Flyweight}
+\lstinputlisting{Flyweight.py}
+\section{Proxy}
+\lstinputlisting{Proxy.py}
+
+\chapter{Behavioural Code Examples}
+
+\section{Chain of Responsibility}
+\lstinputlisting{Chain_of_Responsibility.py}
+\section{Command}
+\lstinputlisting{Command.py}
+\section{Interpreter}
+\lstinputlisting{Interpreter.py}
+\section{Iterator}
+\lstinputlisting{Iterator.py}
+\section{Mediator}
+\lstinputlisting{Mediator.py}
+\section{Memento}
+\lstinputlisting{Memento.py}
+\section{Observer}
+\lstinputlisting{Observer.py}
+\section{State}
+\lstinputlisting{State.py}
+\section{Strategy}
+\lstinputlisting{Strategy.py}
+\section{Template Method}
+\lstinputlisting{Template_Method.py}
+\section{Visitor}
+\lstinputlisting{Visitor.py}
+
+\chapter{Non GOF Patterns/GUI Patterns Code Examples}
+\section{Model View Presenter}
+\lstinputlisting{Model_View_Presenter.py}
+\section{Model View Controller}
+\lstinputlisting{Model_View_Controller.py}
+\section{Model View View-Model}
+\lstinputlisting{Model_View_View-Model.py}
+
+\begin{thebibliography}{99}
+\bibitem{GOF} Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides, \emph{Design Patterns: Elements of Reusable Object-Oriented Software} (: Addison-Wesley Professional, January 15, 1995)
+\bibitem{python-patterns-site} http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style
+\end{thebibliography}
+\end{document}
+
+
+
