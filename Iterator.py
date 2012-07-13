@@ -32,5 +32,8 @@ if (__name__ == "__main__"):
         "Sunday"
         ]
     it = ReverseIterator(days)
-    for day in it:
-        print(day)
+    #for day in it:
+    #    print(day)
+    print(iter(it))
+    
+    

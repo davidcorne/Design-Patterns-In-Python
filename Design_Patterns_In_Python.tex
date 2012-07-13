@@ -180,9 +180,9 @@ Structures like global variables or settings.
 
 This is certainly the most controversial pattern on this list. 
 
-In C++ you have to ensure that a new instance of the singleton cannot be made. This is typically done by protecting the constructors and making a static Instance() function which returns the current instance, or makes a new one if it is appropriate. 
+In C++ you have to ensure that a new instance of the singleton cannot be made. This is typically done by protecting the constructors and making a static \lstinline[language = c++]{Instance()} function which returns the current instance, or makes a new one if it is appropriate. \\
 
-This is another easy pattern to implement in Python. It is a case of overriding the \_\_new()\_\_ function. This is a static method for all classes which is called on construction. This function is called with an argument of the class type requested and returns a new instance of that class. So to implement the singleton pattern it is a case of making sure that the \_\_new()\_\_ method returns the global instance. This can be done with the following code:
+This is another easy pattern to implement in Python. It is a case of overriding the \lstinline{__new__()} function. This is a static method for all classes which is called on construction. This function is called with an argument of the class type requested and returns a new instance of that class. So to implement the singleton pattern it is a case of making sure that the \lstinline{__new__()} method returns the global instance. This can be done with the following code:
 \begin{lstlisting}
     def __new__(new_singleton):
         """Override the __new__ method so that it is a singleton."""
@@ -192,7 +192,7 @@ This is another easy pattern to implement in Python. It is a case of overriding 
             print("")
         return new_singleton.instance
 \end{lstlisting}
-Here the class name is Singleton and instance is a member variable initialised to None.
+Here the class name is Singleton and instance is a member variable initialised to \lstinline{None}.
 
 \chapter{Structural}
 
@@ -242,7 +242,16 @@ Here the class name is Singleton and instance is a member variable initialised t
 \section{Iterator}
 % table of information for the start of a section
 \patternSummaryGoalMotProCon{}{}{}{}
-This is a pattern which falls into the catagory of included in Python already. This is because anything which can be iterated over is able to be. This goes for built in classes but if you want to make an iterable class you need to supply two methods; \_\_iter\_\_() and next().
+This is a pattern which falls into the catagory of included in Python already. This is because anything which can be iterated over is able to be. This goes for built in classes but if you want to make an iterable class you need to supply two methods; \lstinline{__iter__()} and \lstinline{next()}. These two methods can be called to explicitly make a loop or they will be called in a for loop. For instance in the example code there are the following lines:
+% [firstline = 35]
+\begin{lstlisting}
+    for day in it:
+        print(day)
+\end{lstlisting}
+Which give exactly the same result as:
+%\lstlisting[firstline = 35]{
+%thing
+% }
 
 \section{Mediator}
 % table of information for the start of a section
