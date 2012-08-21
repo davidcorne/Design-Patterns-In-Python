@@ -1,0 +1,17 @@
+# ignore emacs temp files
+*~
+
+# ignore the latex rubbish
+*.aux 
+*.out 
+*.log 
+*.snm 
+*.nav 
+*.toc 
+*.synctex.gz
+
+# ignore the finished product, attach as a download later
+*.pdf
+
+# ignore the C++ examples I've made to better my understanding
+C++/*

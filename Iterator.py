@@ -8,9 +8,11 @@ class ReverseIterator(object):
 
     def __init__(self, iterable_object):
         self.list = iterable_object
+        # start at the end of the iterable_object
         self.index = len(iterable_object)
 
     def __iter__(self):
+        # return an iterator
         return self
 
     def next(self):
@@ -32,8 +34,7 @@ if (__name__ == "__main__"):
         "Sunday"
         ]
     it = ReverseIterator(days)
-    #for day in it:
-    #    print(day)
-    print(iter(it))
+    for day in it:
+        print(day)
     
     

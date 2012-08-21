@@ -2,45 +2,42 @@
 # Written by: DGC
 
 class Singleton(object):
-    instance = None
-    number = 0
-    array = []
-    string = ""
+    __instance = None
 
-    def __init__(self):
-        self.reset_var = 0
-        print("Some initialisation.")
-        print("")
+    def init(self):
+        pass
 
-    def __new__(new_singleton):
+    def __new__(new_singleton, *arguments, **keyword_arguments):
         """Override the __new__ method so that it is a singleton."""
-        if not new_singleton.instance:
-            new_singleton.instance = super(Singleton, new_singleton).__new__(new_singleton)
+        if not new_singleton.__instance:
             print("An actual new instance of Singleton made.")
             print("")
-        return new_singleton.instance
-    
-    def output(self):
-        print("My number is:"),
-        print(self.number)
-        print("My array is:"),
-        print(self.array)
-        print("My string is:"),
-        print(self.string)
-        print("My variable that's reset on creation is:"),
-        print(self.reset_var)
+            new_singleton.__instance = object.__new__(new_singleton)
+            new_singleton.__instance.init(*arguments, **keyword_arguments)
+        return new_singleton.__instance
+
+class GlobalState(Singleton):
+    value = 0
+
+    def init(self):
+        print("init() called once")
+        print("")
+
+    def __init__(self):
+        print("__init__() always called")
         print("")
 
 if (__name__ == "__main__"):
-    instance_one = Singleton()
-    instance_one.reset_var = 5
-    instance_one.output()
+    a = GlobalState()
+    # value is default, 0
+    print("Expecting 0, value = %i" %(a.value))
+    print("")
 
-    # now change instance_one, make a new Singleton() and see if it's worked
-    instance_one.number = "I'm not a number!!"
-    instance_one.array = 14
-    instance_one.string = [1, 1, 2]
+    # set the value to 5
+    a.value = 5
 
-    instance_two = Singleton()
-    instance_two.output()
-    
+    # make a new object, the value will still be 5
+    b = GlobalState()
+    print("Expecting 5, value = %i" %(b.value))
+    print("")
+    print("Is a == b? " + str(a is b))
