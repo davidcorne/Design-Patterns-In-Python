@@ -1,3 +1,6 @@
+#ignore debug.log
+debug.log
+
 # ignore emacs temp files
 *~
 
