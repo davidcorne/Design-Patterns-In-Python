@@ -5,7 +5,8 @@
 class Shape(object):
 
     def __init__(self):
-        self.calculator = None
+        # fakes an abstract base class in Python 2
+        raise NotImplementedError
 
     def area(self):
         """ 
@@ -30,7 +31,7 @@ class RectangleAreaImpl(object):
         self.x = x
         self.y = y
 
-    def calculate(self):
+  def calculate(self):
         return self.x * self.y
  
 #==============================================================================

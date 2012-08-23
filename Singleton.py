@@ -2,10 +2,8 @@
 # Written by: DGC
 
 class Singleton(object):
+    """ A generic base class to derive any singleton class from. """
     __instance = None
-
-    def init(self):
-        pass
 
     def __new__(new_singleton, *arguments, **keyword_arguments):
         """Override the __new__ method so that it is a singleton."""
@@ -17,9 +15,9 @@ class Singleton(object):
         return new_singleton.__instance
 
 class GlobalState(Singleton):
-    value = 0
 
     def init(self):
+        self.value = 0
         print("init() called once")
         print("")
 
@@ -40,4 +38,4 @@ if (__name__ == "__main__"):
     b = GlobalState()
     print("Expecting 5, value = %i" %(b.value))
     print("")
-    print("Is a == b? " + str(a is b))
+    print("Is a == b? " + str(a == b))

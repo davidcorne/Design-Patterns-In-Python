@@ -1,0 +1,26 @@
+Abstract Factory---------- 
+Adapter------------------- 
+Bridge-------------------- Shape area calculation
+Builder------------------- 
+Chain of Responsibility--- 
+Command------------------- 
+Composite----------------- 
+Decorator----------------- 
+Facade-------------------- Car
+Factory Method------------
+Flyweight-----------------
+Interpreter---------------
+Iterator------------------ Iterating over a list backwards
+Mediator------------------
+Memento------------------- Undo
+Model View Controller----- 
+Model View Presenter------ 
+Model View View-Model----- Email
+Observer------------------ 
+Prototype----------------- 
+Proxy--------------------- 
+Singleton----------------- Global state
+State--------------------- Speaking different languages
+Strategy------------------ Finding primes
+Template Method----------- 
+Visitor------------------- 
