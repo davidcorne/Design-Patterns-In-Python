@@ -1,49 +1,57 @@
 #!/usr/bin/env python
 # Written by: DGC
-# undo
 
 import copy
 
 #==============================================================================
-class something(object):
-    
-    def __init__(self):
-        self.a = 0
-        self.undo_helper = UndoHelper(self)
+class Memento(object):
 
-    def undo(self):
-        #print("revert %i" %(self.undo_helper.revert().a))
-        self = self.undo_helper.revert()
-        
-    def add(self, number):
-        self.a += number
-        self.undo_helper.append(self)
+    def __init__(self, data):
+        # make a deep copy of every variable in the given class
+        for attribute in vars(data):
+            # mechanism for using properties without knowing their names
+            setattr(self, attribute, copy.deepcopy(getattr(data, attribute)))
 
 #==============================================================================
-class UndoHelper(object):
+class Undo(object):
     
-    def __init__(self, something):
-        self.history = [something]
+    def __init__(self):
+        # each instance keeps the latest saved copy so that there is only one 
+        # copy of each in memory
+        self.__last = None
 
-    def revert(self):
-        #print("revert"),
-        #for i in self.history:
-        #    print(i.a),
-        #    print("")
-        print(self.history)
-        return self.history[0]
+    def save(self):
+        self.__last = Memento(self)
 
-    def append(self, item):
-        self.history.append(copy.deepcopy(item))
+    def undo(self):
+        for attribute in vars(self):
+            # mechanism for using properties without knowing their names
+            setattr(self, attribute, getattr(self.__last, attribute))
+
+#==============================================================================
+class Data(Undo):
+
+    def __init__(self):
+        super(Data, self).__init__()
+        self.numbers = []
 
 #==============================================================================
 if (__name__ == "__main__"):
-    s = something()
-    s.add(5)
-    print(s.a)
-    s.add(5)
-    print(s.a)
-    s.add(5)
-    print(s.a)
-    s.undo()
-    print(s.a)
+    d = Data()
+    repeats = 10
+    # add a number to the list in data repeat times
+    print("Adding.")
+    for i in range(repeats):
+        print("0" + str(i) + " times: " + str(d.numbers))
+        d.save()
+        d.numbers.append(i)
+    d.save()
+    print("10 times: " + str(d.numbers))
+    print("")
+    
+    # now undo repeat times
+    print("Using Undo.")
+    for i in range(repeats):
+        print("0" + str(i) + " times: " + str(d.numbers))
+        d.undo()
+    print("10 times: " + str(d.numbers))
