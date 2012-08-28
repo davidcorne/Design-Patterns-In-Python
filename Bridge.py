@@ -54,8 +54,19 @@ class TriangleAreaImpl(object):
        
 #==============================================================================
 if (__name__ == "__main__"):
-    rect = Rectangle(4, 5)
-    print("4 x 5 Rectangle area: %d" %(rect.area()))
+    x = 4
+    y = 5
+    rect = Rectangle(x, y)
+    print(str(x) + " x " + str(y) + " Rectangle area: " + str(rect.area()))
   
-    tri = Triangle(4.0, 5.0);
-    print("Base 4 height 5 Triangle area: %d" %(tri.area()))
+    base = 4
+    height = 5
+    tri = Triangle(base, height);
+    print(
+        "Base " +
+        str(base) +
+        ", Height " +
+        str(height) + 
+        " Triangle area: " +
+        str(tri.area())
+        )

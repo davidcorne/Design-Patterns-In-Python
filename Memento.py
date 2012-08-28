@@ -45,8 +45,8 @@ if (__name__ == "__main__"):
         print("0" + str(i) + " times: " + str(d.numbers))
         d.save()
         d.numbers.append(i)
-    d.save()
     print("10 times: " + str(d.numbers))
+    d.save()
     print("")
     
     # now undo repeat times

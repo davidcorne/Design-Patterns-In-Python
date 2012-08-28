@@ -8,7 +8,7 @@ Composite-----------------
 Decorator----------------- 
 Facade-------------------- Car
 Factory Method------------
-Flyweight-----------------
+Flyweight----------------- Look and feel eg widget style
 Interpreter---------------
 Iterator------------------ Iterating over a list backwards
 Mediator------------------
