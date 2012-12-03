@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Written by: DGC
 
+#==============================================================================
 class Singleton(object):
     """ A generic base class to derive any singleton class from. """
     __instance = None
@@ -11,20 +12,23 @@ class Singleton(object):
             print("An actual new instance of Singleton made.")
             print("")
             new_singleton.__instance = object.__new__(new_singleton)
-            new_singleton.__instance.init(*arguments, **keyword_arguments)
+            new_singleton.__instance.__init__(*arguments, **keyword_arguments)
         return new_singleton.__instance
 
+#==============================================================================
 class GlobalState(Singleton):
 
-    def init(self):
-        self.value = 0
-        print("init() called once")
-        print("")
+    value = 0
+    #def init(self):
+    #    self.value = 0
+    #    print("init() called once")
+    #    print("")
 
     def __init__(self):
         print("__init__() always called")
         print("")
 
+#==============================================================================
 if (__name__ == "__main__"):
     a = GlobalState()
     # value is default, 0

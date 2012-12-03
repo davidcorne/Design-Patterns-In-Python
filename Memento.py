@@ -14,7 +14,7 @@ class Memento(object):
 
 #==============================================================================
 class Undo(object):
-    
+
     def __init__(self):
         # each instance keeps the latest saved copy so that there is only one 
         # copy of each in memory

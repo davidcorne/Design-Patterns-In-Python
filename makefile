@@ -10,7 +10,7 @@ test: FRC
 	@for program in *.py; \
         do \
           echo $$program; \
-          ./$$program; \
+          python -3 $$program; \
           echo ""; \
         done
 

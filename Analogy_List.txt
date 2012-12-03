@@ -1,7 +1,7 @@
 Abstract Factory---------- 
-Adapter------------------- 
+Adapter------------------- RC Car controller
 Bridge-------------------- Shape area calculation
-Builder------------------- 
+Builder------------------- Making cars
 Chain of Responsibility--- 
 Command------------------- 
 Composite----------------- 

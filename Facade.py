@@ -7,17 +7,18 @@
 class Engine(object):
     
     def __init__(self):
+        # how much the motor is spinning in revs per minute
         self.spin = 0
 
     def start(self, spin):
         if (spin > 2000):
-            self.spin = spin / 15
+            self.spin = spin // 15
 
 #==============================================================================
 class StarterMotor(object):
     
     def __init__(self):
-        # how much the motor is spinning in revs per minute
+        # how much the starter motor is spinning in revs per minute
         self.spin = 0
 
     def start(self, charge):
