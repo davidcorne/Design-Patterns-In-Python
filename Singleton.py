@@ -8,7 +8,7 @@ class Singleton(object):
 
     def __new__(new_singleton, *arguments, **keyword_arguments):
         """Override the __new__ method so that it is a singleton."""
-        if not new_singleton.__instance:
+        if new_singleton.__instance is None:
             print("An actual new instance of Singleton made.")
             print("")
             new_singleton.__instance = object.__new__(new_singleton)
