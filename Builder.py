@@ -29,7 +29,7 @@ class VehicleBuilder(object):
     An abstract builder class, for concrete builders to be derived from.
     """
     def __init__(self):
-        self.vehicle = None
+        raise NotImplementedError
 
     def make_wheels(self):
         raise NotImplementedError
