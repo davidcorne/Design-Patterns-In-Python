@@ -4,29 +4,26 @@
 #==============================================================================
 class Language(object):
     
-    def __init__(self):
-        self.hello = ""
-
     def greet(self):
-        return self.hello
+        return self.greeting
 
 #==============================================================================
 class English(Language):
     
     def __init__(self):
-        self.hello = "Hello"
+        self.greeting = "Hello"
 
 #==============================================================================
 class French(Language):
     
     def __init__(self):
-        self.hello = "Bonjour"
+        self.greeting = "Bonjour"
 
 #==============================================================================
 class Spanish(Language):
     
     def __init__(self):
-        self.hello = "Hola"
+        self.greeting = "Hola"
 
 #==============================================================================
 class Multilinguist(object):
@@ -40,11 +37,14 @@ class Multilinguist(object):
 #==============================================================================
 if (__name__ == "__main__"):
 
+    # talking in English
     translator = Multilinguist(English())
     translator.greet()
 
+    # meets a Frenchman
     translator.language = French()    
     translator.greet()
 
+    # greets a Spaniard
     translator.language = Spanish()    
     translator.greet()
