@@ -5,7 +5,7 @@
 class Shape(object):
 
     def __init__(self):
-        # fakes an abstract base class in Python 2
+        # fakes an abstract base class in Python 2.X
         raise NotImplementedError
 
     def area(self):

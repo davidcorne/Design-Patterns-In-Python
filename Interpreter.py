@@ -16,15 +16,15 @@ class CamelCase(object):
 class CamelCaseInterpreter(object):
     
     def __init__(self, old_class):
-        super(CamelCaseInterpreter, self).__setattr__("old_class", old_class)
+        super(CamelCaseInterpreter, self).__setattr__("__old_class", old_class)
 
     def __getattribute__(self, name):
-        old_class = super(CamelCaseInterpreter, self).__getattribute__("old_class")
+        old_class = super(CamelCaseInterpreter, self).__getattribute__("__old_class")
         converter = super(CamelCaseInterpreter, self).__getattribute__("name_converter")
         return old_class.__getattribute__(converter(name))
 
     def __setattr__(self, name, value):
-        old_class = super(CamelCaseInterpreter, self).__getattribute__("old_class")
+        old_class = super(CamelCaseInterpreter, self).__getattribute__("__old_class")
         converter = super(CamelCaseInterpreter, self).__getattribute__("name_converter")
         old_class.__setattr__(converter(name), value)
 
