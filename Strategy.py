@@ -69,15 +69,15 @@ if (__name__ == "__main__"):
     standard = StandardAlgorithm()
     
     hardcoded_primes = PrimeFinder(hardcoded)
-    hardcoded_primes.calculate(10)
+    hardcoded_primes.calculate(50)
     hardcoded_primes.out()
 
     standard_primes = PrimeFinder(standard)
-    standard_primes.calculate(10)
+    standard_primes.calculate(50)
     standard_primes.out()
 
     print(
-        "Do the two algorithms get the same result on 10 primes? %s" 
+        "Do the two algorithms get the same result on 50 primes? %s" 
         %(str(hardcoded_primes.primes == standard_primes.primes))
         )
 
