@@ -27,10 +27,9 @@ def hard_coded_algorithm(limit):
     """
     hardcoded_primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
     primes = []
-    for p in hardcoded_primes:
-        if (p < limit):
-            primes.append(p)
-
+    for prime in hardcoded_primes:
+        if (prime < limit):
+            primes.append(prime)
     return primes
 
 #==============================================================================
