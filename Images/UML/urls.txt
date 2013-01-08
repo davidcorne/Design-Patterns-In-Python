@@ -1,0 +1,4 @@
+This is to store the editable URLS from the online UML tool used to make these images
+
+Facade_specific.jpg
+http://yuml.me/diagram/nofunky;/class/edit/// Facade Class Diagram, [Car|battery;starter;engine;|turn_key()]++->[Engine|spin|start(charge))], [Car]++->[StarterMotor|spin|start(charge)], [Car]++->[Battery|charge|]
