@@ -119,15 +119,70 @@
 % {\large August 2012.}
 
 \frontmatter
-\tableofcontents
+%\tableofcontents
 
-\chapter{Acknowledgments}
+%\chapter{Acknowledgments}
 \mainmatter
 
 \chapter{Introduction}
-There are many places this is usful, there have been a few tries to do this.
+his is inspired by the aptly titled \emph{Design Patterns: Elements of Reusable Object-Oriented Software} by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides who are collectively known as the Gang of Four (GOF).
 
-many patterns given to you by the language
+The content of this book is taken from my blog at davidcorne.com.
+
+Why do I want to do this? I want to write this to pass on some knowledge which I have gained working as a software engineer, but also to learn a lot. I think of these as the twin goals of this blog because if I write about something I want to get it right. While I know quite a bit about some design patterns there are others I definitely don't.
+
+Here is the list of the design patterns I hope to tackle.
+\begin{itemize}
+
+\item Creational
+\begin{itemize}
+% \enumerate
+\item Abstract Factory
+\item Builder
+\item Factory Method
+\item Prototype
+\item Singleton
+\end{itemize}
+
+\item Structural
+
+\begin{itemize}
+\item Adapter
+\item Bridge
+\item Composite
+\item Decorator
+\item Facade
+\item Flyweight
+\item Proxy
+\end{itemize}
+
+\item Behavioural
+
+\begin{itemize}
+\item Chain of Responsibility
+\item Command
+\item Interpreter
+\item Iterator
+\item Mediator
+\item Memento
+\item Observer
+\item State
+\item Strategy
+\item Template
+\item Visitor
+\end{itemize}
+
+\item UI Patterns
+
+\begin{itemize}
+\item Model View Presenter (MVP)
+\item Model View Controller (MVC)
+\item Model View View-Model (MVVM)
+\end{itemize}
+\end{itemize}
+
+The first 3 sections are directly from the GOF book and that is where I am drawing most of my inspiration from. However that book used examples from C++ and smalltalk and I believe that writing in python will simplify this hugely.
+
 
 \section{Gang of Four}
 This influential book .......
@@ -214,7 +269,115 @@ Here the class name is Singleton and instance is a member variable initialised t
 
 \section{Facade}
 % table of information for the start of a section
-\patternSummaryGoalMotProCon{}{}{}{}
+\subsection{The Purpose}
+
+The facade pattern is used to make one object with a simple interface represent a complicated system. The problem often occurs in programming where you have a series of interconnected classes where the functions must be called in a certain order or have complicated interdependencies.
+\\
+
+This pattern is to give a standard interface to such a system, so you don't have to rely on reading how you call the system in one of the files or look at example usage.
+
+
+\subsection{The Pattern}
+Here is a UML diagram representing the pattern.
+
+
+UML is a very useful tool however I have not used a lot yet. It provides a (mostly) standardised way of representing system structure for object oriented programming. I intend to use a UML diagram to represent each pattern in this series, I will explain them so hopefully you don't need to know UML to follow what's going on. \\
+
+This is a nice and simple UML diagram with the following elements; the facade box represents a class, the boxes in the subsystem box could be any object such as a class or a function and the lines between them indicate some relationship. \\
+
+This shows that the pattern is just one class which groups together a lot of other objects and uses them in some way.
+
+\subsection{An Example Usage}
+
+Here is an implementation of this in python. For this example I am using a car. As this is a small example I will not create a whole complex sub-system, just a few classes.
+
+Here are the three classes which make up the sub-system; Engine, StarterMotor and Battery.
+
+[firstline = 6]
+\begin{lstlisting}
+#==============================================================================
+class Engine(object):
+    
+    def __init__(self):
+        # how much the motor is spinning in revs per minute
+        self.spin = 0
+
+    def start(self, spin):
+        if (spin > 2000):
+            self.spin = spin // 15
+
+#==============================================================================
+class StarterMotor(object):
+    
+    def __init__(self):
+        # how much the starter motor is spinning in revs per minute
+        self.spin = 0
+
+    def start(self, charge):
+        # if there is enough power then spin fast
+        if (charge > 50):
+            self.spin = 2500
+
+#==============================================================================
+class Battery(object):
+
+    def __init__(self):
+        # % charged, starts flat
+        self.charge = 0
+\end{lstlisting}
+
+So now we need our facade object which will work as a common interface for the car.
+
+[firstline = 36]
+\begin{lstlisting}
+#==============================================================================
+class Car(object):
+    # the facade object that deals with the battery, engine and starter motor.
+    
+    def __init__(self):
+        self.battery = Battery()
+        self.starter = StarterMotor()
+        self.engine = Engine()
+        
+    def turn_key(self):
+        # use the battery to turn the starter motor
+        self.starter.start(self.battery.charge)
+
+        # use the starter motor to spin the engine
+        self.engine.start(self.starter.spin)
+        
+        # if the engine is spinning the car is started
+        if (self.engine.spin > 0):
+            print("Engine Started.")
+        else:
+            print("Engine Not Started.")
+
+    def jump(self):
+        self.battery.charge = 100
+        print("Jumped")
+\end{lstlisting}
+
+This enables the user of Car to use the system as it was intended to be used. I include this at the bottom of the python module so that on running it makes a car, tries to start it, then jumps it to start it. \\
+
+[firstline = 62]
+\begin{lstlisting}
+#==============================================================================
+if (__name__ == "__main__"):
+    corsa = Car()
+    corsa.turn_key()
+    corsa.jump()
+    corsa.turn_key()
+\end{lstlisting}
+
+The output of this program is the following; \\
+
+\begin{lstlisting}
+Engine Not Started.
+Jumped
+Engine Started.
+\end{lstlisting}
+
+That is a simple example of the facade design pattern. The code for this is on my GitHub at https://github.com/davidcorne/Design-Patterns-In-Python/blob/master/Facade.py
 
 \section{Flyweight}
 % table of information for the start of a section
