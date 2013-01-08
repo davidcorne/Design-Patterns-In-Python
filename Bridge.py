@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # Written by: DGC
 
+import abc
+
 #==============================================================================
 class Shape(object):
+    __metaclass__ = abc.ABCMeta
 
+    @abc.abstractmethod
     def __init__(self):
-        # fakes an abstract base class in Python 2.X
-        raise NotImplementedError
+        pass
 
     def area(self):
         """ 
@@ -14,43 +17,31 @@ class Shape(object):
         implementation. 
         """
         assert self.calculator != None, "self.calculator not defined."
-        return self.calculator.calculate()
+        return self.calculator(self)
 
 #==============================================================================
 class Rectangle(Shape):
     
     def __init__(self, x, y):
-        self.calculator = RectangleAreaImpl(x, y)
+        self.calculator = rectangular_area_calculator
         self.x = x
         self.y = y
 
 #==============================================================================
-class RectangleAreaImpl(object):
-
-  def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-  def calculate(self):
-        return self.x * self.y
+def rectangular_area_calculator(rectangle):
+    return rectangle.x * rectangle.y
  
 #==============================================================================
 class Triangle(Shape):
 
     def __init__(self, base, height):
-        self.calculator = TriangleAreaImpl(base, height)
+        self.calculator = triangular_area_calculator
         self.base = base
         self.height = height
 
 #==============================================================================
-class TriangleAreaImpl(object):
-
-    def __init__(self, base, height):
-        self.base = base
-        self.height = height
-
-    def calculate(self):
-        return 0.5 * self.base * self.height
+def triangular_area_calculator(triangle):
+    return 0.5 * triangle.base * triangle.height
        
 #==============================================================================
 if (__name__ == "__main__"):
