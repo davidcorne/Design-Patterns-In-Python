@@ -29,22 +29,27 @@ class Spanish(Language):
 class Multilinguist(object):
 
     def __init__(self, language):
+        self.greetings = {
+            "English": "Hello",
+            "French": "Bonjour",
+            "Spanish": "Hola"
+            }
         self.language = language
 
     def greet(self):
-        print(self.language.greet())
+        print(self.greetings[self.language])
 
 #==============================================================================
 if (__name__ == "__main__"):
 
     # talking in English
-    translator = Multilinguist(English())
+    translator = Multilinguist("English")
     translator.greet()
 
     # meets a Frenchman
-    translator.language = French()    
+    translator.language = "French"
     translator.greet()
 
     # greets a Spaniard
-    translator.language = Spanish()    
+    translator.language = "Spanish"    
     translator.greet()
