@@ -5,6 +5,11 @@
 class PrimeFinder(object):
     
     def __init__(self, algorithm):
+        """ 
+        Constructor, takes a callable object called algorithm. 
+        algorithm should take a limit argument and return an iterable of prime 
+        numbers below that limit.
+        """
         self.algorithm = algorithm
         self.primes = []
 
@@ -53,6 +58,19 @@ def standard_algorithm(limit):
     return primes
 
 #==============================================================================
+class HardCodedClass(object):
+    
+    def __init__(self, limit):
+        hardcoded_primes = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
+        self.primes = []
+        for prime in hardcoded_primes:
+            if (prime < limit):
+                self.primes.append(prime)
+        
+    def __iter__(self):
+        return iter(self.primes)
+
+#==============================================================================
 if (__name__ == "__main__"):
     hardcoded_primes = PrimeFinder(hard_coded_algorithm)
     hardcoded_primes.calculate(50)
@@ -61,6 +79,10 @@ if (__name__ == "__main__"):
     standard_primes = PrimeFinder(standard_algorithm)
     standard_primes.calculate(50)
     standard_primes.out()
+
+    class_primes = PrimeFinder(HardCodedClass)
+    class_primes.calculate(50)
+    class_primes.out()
 
     print(
         "Do the two algorithms get the same result on 50 primes? %s" 
