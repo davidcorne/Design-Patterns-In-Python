@@ -1,7 +1,42 @@
 #!/usr/bin/env python
 # Written by: DGC
 
-class ReverseIterator(object):
+import abc
+
+#==============================================================================
+class ImmutableContainer(object):
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def __len__(self):
+        raise
+    
+    @abc.abstractmethod
+    def __getitem__(self, key):
+        raise
+    
+#==============================================================================
+class MutableContainer(ImmutableContainer):
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def __setitem__(self, key, value):
+        raise
+
+    @abc.abstractmethod
+    def __delitem__(self, key):
+        raise
+
+#==============================================================================
+class Iterable(object):
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def __iter__(self):
+        raise
+
+#==============================================================================
+class ReverseIterator(Iterable):
     """ 
     Iterates the object given to it in reverse so it shows the difference. 
     """
@@ -36,5 +71,3 @@ if (__name__ == "__main__"):
     it = ReverseIterator(days)
     for day in it:
         print(day)
-    
-    
