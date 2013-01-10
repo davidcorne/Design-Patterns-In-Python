@@ -1,28 +1,37 @@
 #!/usr/bin/env python
 # Written by: DGC
 
+import abc
+
 #==============================================================================
 class Singleton(object):
     """ A generic base class to derive any singleton class from. """
+    __metaclass__ = abc.ABCMeta
     __instance = None
 
     def __new__(new_singleton, *arguments, **keyword_arguments):
         """Override the __new__ method so that it is a singleton."""
         if new_singleton.__instance is None:
-            print("An actual new instance of Singleton made.")
-            print("")
             new_singleton.__instance = object.__new__(new_singleton)
-            new_singleton.__instance.__init__(*arguments, **keyword_arguments)
+            new_singleton.__instance.init(*arguments, **keyword_arguments)
         return new_singleton.__instance
+
+    @abc.abstractmethod
+    def init(self, *arguments, **keyword_arguments):
+        """ 
+        as __init__ will be called on every new instance of a base class of 
+        Singleton we need a function for initialisation. This will only be 
+        called once regardless of how many instances of Singleton are made.
+        """
+        raise
 
 #==============================================================================
 class GlobalState(Singleton):
 
-    value = 0
-    #def init(self):
-    #    self.value = 0
-    #    print("init() called once")
-    #    print("")
+    def init(self):
+        self.value = 0
+        print("init() called once")
+        print("")
 
     def __init__(self):
         print("__init__() always called")
