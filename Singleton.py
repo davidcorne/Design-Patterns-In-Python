@@ -37,8 +37,26 @@ class GlobalState(Singleton):
         print("__init__() always called")
         print("")
 
+class DerivedGlobalState(GlobalState):
+    
+    def __init__(self):
+        print("derived made")
+        super(DerivedGlobalState, self).__init__()
+
+    def thing(self):
+        print(self.value)
+
 #==============================================================================
 if (__name__ == "__main__"):
+    d = DerivedGlobalState()
+    print(type(d))
+    d.thing()
+    d.value = -20
+    e = DerivedGlobalState()
+    e.thing()
+    f = DerivedGlobalState()
+    f.thing()
+    
     a = GlobalState()
     # value is default, 0
     print("Expecting 0, value = %i" %(a.value))
