@@ -18,3 +18,6 @@ debug.log
 
 # ignore the C++ examples I've made to better my understanding
 C++/*
+
+# ignore the python byte files
+*.pyc
