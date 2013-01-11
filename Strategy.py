@@ -9,7 +9,7 @@ class PrimeFinder(object):
         Constructor, takes a callable object called algorithm. 
         algorithm should take a limit argument and return an iterable of prime 
         numbers below that limit.
-        """
+        """ 
         self.algorithm = algorithm
         self.primes = []
 

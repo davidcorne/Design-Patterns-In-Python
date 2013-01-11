@@ -7,6 +7,12 @@ import abc
 class PrimeFinder(object):
     
     def __init__(self, algorithm):
+        """ 
+        Constructor, takes a lass called algorithm. 
+        algorithm should have a function called calculate which will take a 
+        limit argument and return an iterable of prime numbers below that 
+        limit.
+        """ 
         self.algorithm = algorithm
         self.primes = []
 
