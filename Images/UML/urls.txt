@@ -4,5 +4,13 @@ Facade_specific.jpg
 http://yuml.me/diagram/plain;/class/edit/// Facade Class Diagram, [Car|battery;starter;engine;|turn_key()]++->[Engine|spin|start(charge))], [Car]++->[StarterMotor|spin|start(charge)], [Car]++->[Battery|charge|]
 
 Strategy_general.jpg
-http://yuml.me/diagram/plain;/class/edit/// Non-specific Strategy Class Diagram, [Caller]<>->[Algorithm1], [Caller]<>->[Algorithm2], [<<IAlgorithm>>]^-.-[Algorithm1], [<<IAlgorithm>>]^-.-[Algorithm2]
+http://yuml.me/diagram/plain;dir:RL;/class/edit/// Non-specific Strategy Class Diagram, [Caller]<>->[<<IAlgorithm>>], [<<IAlgorithm>>]^-.-[Algorithm1], [<<IAlgorithm>>]^-.-[Algorithm2]
+
+Strategy_specific.png
+http://yuml.me9dfd5ea2
+
+// specific strategy pattern
+[PrimeFinder|algorithm;primes|calculate(limit);out()]+->[Algorithm|calculate(limit)]
+[Algorithm]^-.-[HardCoded|calculate(limit)]
+[Algorithm]^-.-[Standard|calculate(limit)
 
