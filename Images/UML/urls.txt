@@ -16,8 +16,8 @@ http://yuml.me9dfd5ea2
 
 
 Builder_general.png
-http://yuml.me/d1ef7b15
-http://yuml.me/edit/d1ef7b15
+http://yuml.me/3f5049ad
+http://yuml.me/edit/3f5049ad
 
 // General Builder pattern
 [Director| builder| create()]<>->[Builder]
