@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # Written by: DGC
 
+import abc
+
 #==============================================================================
 class Vehicle(object):
 
@@ -28,17 +30,19 @@ class VehicleBuilder(object):
     """
     An abstract builder class, for concrete builders to be derived from.
     """
-    def __init__(self):
-        raise NotImplementedError
-
+    __metadata__ = abc.ABCMeta
+    
+    @abc.abstractmethod
     def make_wheels(self):
-        raise NotImplementedError
+        raise
 
+    @abc.abstractmethod
     def make_doors(self):
-        raise NotImplementedError
+        raise
 
+    @abc.abstractmethod
     def make_seats(self):
-        raise NotImplementedError
+        raise
 
     def build(self):
         self.make_wheels()
