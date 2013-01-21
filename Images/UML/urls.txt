@@ -14,3 +14,14 @@ http://yuml.me9dfd5ea2
 [Algorithm]^-.-[HardCoded|calculate(limit)]
 [Algorithm]^-.-[Standard|calculate(limit)
 
+
+Builder_general.png
+http://yuml.me/d1ef7b15
+http://yuml.me/edit/d1ef7b15
+
+// General Builder pattern
+[Director| builder| create()]<>->[Builder]
+[Builder| build_part_1();build_part_2()]^-.-[ConcreteBuilder2| build_part_1();build_part_2()]
+[Builder]^-.-[ConcreteBuilder1| build_part_1();build_part_2()]
+[ConcreteBuilder1]creates->[Product]
+[ConcreteBuilder2]creates->[Product]
