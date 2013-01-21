@@ -1,9 +1,23 @@
 #!/usr/bin/env python
 # Written by: DGC
 
-class something(object):
+import abc
+
+class Observer(object):
+    __metaclass__ = abc.ABCMeta
     
-    def __init__(self):
-        print("initalised")
+    @abc.abstractmethod
+    def update(self):
+        raise
+
+class ConcreteObserver(Observer):
+    pass
+
+if (__name__ == "__main__"):
+    print("thing")
+    conc = ConcreteObserver()
+    
+    
+        
 
 
