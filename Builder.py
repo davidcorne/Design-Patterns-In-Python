@@ -75,17 +75,33 @@ class BikeBuilder(VehicleBuilder):
         self.vehicle.seats = 2
 
 #==============================================================================
+class VehicleManufacturer(object):
+    """
+    The director class, this will keep a concrete builder.
+    """
+    
+    def __init__(self):
+        self.builder = None
+
+    def create(self):
+        """ 
+        Creates and returns a Vehicle using self.builder
+        Precondition: not self.builder is None
+        """
+        assert not self.builder is None, "No defined builder"
+        self.builder.make_wheels()
+        self.builder.make_doors()
+        self.builder.make_seats()
+        return self.builder.vehicle
+    
+#==============================================================================
 if (__name__ == "__main__"):
-    car_maker = CarBuilder()
-    car_maker.make_wheels()
-    car_maker.make_doors()
-    car_maker.make_seats()
+    manufacturer = VehicleManufacturer()
+    
+    manufacturer.builder = CarBuilder()
+    car = manufacturer.create()
+    car.view()
 
-    car_maker.vehicle.view()
-
-    bike_maker = BikeBuilder()
-    bike_maker.make_wheels()
-    bike_maker.make_doors()
-    bike_maker.make_seats()
-
-    bike_maker.vehicle.view()
+    manufacturer.builder = BikeBuilder()
+    bike = manufacturer.create()
+    bike.view()
