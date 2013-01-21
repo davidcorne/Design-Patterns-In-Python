@@ -44,12 +44,6 @@ class VehicleBuilder(object):
     def make_seats(self):
         raise
 
-    def build(self):
-        self.make_wheels()
-        self.make_doors()
-        self.make_seats()
-        return self.vehicle
-
 #==============================================================================
 class CarBuilder(VehicleBuilder):
 
@@ -83,9 +77,17 @@ class BikeBuilder(VehicleBuilder):
 #==============================================================================
 if (__name__ == "__main__"):
     car_maker = CarBuilder()
-    car = car_maker.build()
+    car_maker.make_wheels()
+    car_maker.make_doors()
+    car_maker.make_seats()
+    car = car_maker.vehicle
+
     car.view()
 
     bike_maker = BikeBuilder()
-    bike = bike_maker.build()
+    bike_maker.make_wheels()
+    bike_maker.make_doors()
+    bike_maker.make_seats()
+    bike = bike_maker.vehicle
+
     bike.view()
