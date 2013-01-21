@@ -25,3 +25,14 @@ http://yuml.me/edit/3f5049ad
 [Builder]^-.-[ConcreteBuilder1| build_part_1();build_part_2()]
 [ConcreteBuilder1]creates->[Product]
 [ConcreteBuilder2]creates->[Product]
+
+Builder_specific.png
+http://yuml.me/8e4f2043
+http://yuml.me/edit/8e4f2043
+
+// Specific Builder pattern
+[Director| builder| create()]<>->[VehicleBuilder]
+[VehicleBuilder| |make_wheels();make_doors();make_seats()]^-.-[BikeBuilder| vehicle |make_wheels();make_doors();make_seats()]
+[VehicleBuilder]^-.-[CarBuilder| vehicle|make_wheels();make_doors();make_seats()]
+[CarBuilder]creates->[Vehicle| type;wheels;doors;seats | view() ]
+[BikeBuilder]creates->[Vehicle]
