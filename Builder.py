@@ -80,14 +80,12 @@ if (__name__ == "__main__"):
     car_maker.make_wheels()
     car_maker.make_doors()
     car_maker.make_seats()
-    car = car_maker.vehicle
 
-    car.view()
+    car_maker.vehicle.view()
 
     bike_maker = BikeBuilder()
     bike_maker.make_wheels()
     bike_maker.make_doors()
     bike_maker.make_seats()
-    bike = bike_maker.vehicle
 
-    bike.view()
+    bike_maker.vehicle.view()
