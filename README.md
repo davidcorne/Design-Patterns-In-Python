@@ -49,8 +49,10 @@ These patterns will fit roughly into four categories:
     * Template
     * Visitor
 * UI Patterns
-    * __Model View Presenter (MVP)__
-    * __Model View Controller (MVC)__
-    * __Model View View-Model (MVVM)__
+    * __Model View Presenter__
+    * __Model View Controller__
+    * __Model View View-Model__
+    * __Model View Adapter__
+    * __Presentation Abstraction Control__
 
 Patterns in __bold__ are non [gang of four](http://en.wikipedia.org/wiki/Gang_of_Four) patterns.
