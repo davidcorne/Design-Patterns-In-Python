@@ -4,20 +4,28 @@
 # Inspiration
 # http://www.codeproject.com/Articles/25057/Simple-Example-of-MVC-Model-View-Controller-Design
 from Tkinter import *
+import random
 
 #==============================================================================
 class Model(object):
     
     def __init__(self):
+        random.seed()
         # q_and_a is a dictionary where the key is a question and the entry is
         # a list of pairs, these pairs are an answer and whether it is correct
-        self.q_and_a = dict()
-        
-        self.q_and_a["Is the Earth a sphere?"] = [("Yes", True), ("No", False)]
+        self.q_and_a = {
+            "Is the Earth a sphere?": [
+                ("Yes", True),
+                ("No", False)
+                ],
+            "What's my name?": [
+                ("Dave", True)
+                ]
+            }
 
     def question_and_answer(self):
         """ Returns a randomly chosen question and answer as a pair. """
-        key = "Is the Earth a sphere?"
+        key = random.choice(self.q_and_a.keys())
         return (key, [x[0] for x in self.q_and_a[key]])
 
     def is_correct(self, question, answer):
@@ -97,21 +105,10 @@ class Controller(object):
 
         self.view.register(self)
         q_and_a = self.model.question_and_answer()
-        print(q_and_a)
         self.view.new_question(q_and_a[0], q_and_a[1])
         
     def answer(self, question, answer):
         correct = self.model.is_correct(question, answer)
-        print(correct)
-
-        print(
-            "We asked: \"" + 
-            question + 
-            "\", you answered: \"" +
-            answer + 
-            "\""
-            )
-
 
 #==============================================================================
 if (__name__ == "__main__"):
