@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # Written by: DGC
 
+# Inspiration
+# http://www.codeproject.com/Articles/25057/Simple-Example-of-MVC-Model-View-Controller-Design
 from Tkinter import *
 
 #==============================================================================
@@ -16,43 +18,65 @@ class Model(object):
     def question_and_answer(self):
         """ Returns a randomly chosen question and answer as a pair. """
         key = "Is the Earth a sphere?"
-        return (key, self.q_and_a[key])
+        return (key, [x[0] for x in self.q_and_a[key]])
+
+    def is_correct(self, question, answer):
+        answers = self.q_and_a[question]
+        for ans in answers:
+            if (ans[0] == answer):
+                return ans[1]
+        assert False, "Could not find answer."
 
 #==============================================================================
 class View(object):
 
     def __init__(self):
         self.parent = Tk()
+
+        self.initialise_frame()
+
         self.controller = None
+
+    def initialise_frame(self):
+        self.frame = Frame(self.parent)
+        self.frame.pack()
 
     def new_question(self, question, answers):
         """ 
-        question is a string, answers is a list of pairs. each pair is a 
-        possible answer then a boolean of if it's correct.
+        question is a string, answers is a list of strings
         e.g
         view.new_question(
           "Is the earth a sphere?", 
-          [("yes",True), ("no",False)]
+          ["Yes", "No"]
         )
         """
+        # clear the screen
+        self.frame.destroy()
+        self.initialise_frame()
+
+        # cache the question
+        self.question = question
 
         # put the question on as a label
-        question_label = Label(self.parent, text=question)
+        question_label = Label(self.frame, text=self.question)
         question_label.pack()
 
         # put the answers on as a radio buttons
-        var = BooleanVar()
-        var.set(False) # initialize
-        
-        for answer, correct in answers:
+        self.selected_answer = StringVar()
+        self.selected_answer.set(answers[0])
+
+        for answer in answers:
             option = Radiobutton(
-                self.parent,
+                self.frame,
                 text=answer,
-                variable=var,
-                value=correct
+                variable=self.selected_answer,
+                value=answer,
                 )
             option.pack()
 
+        # new button to confirm
+        button = Button(self.frame, text="Answer", command=self.answer)
+        button.pack()
         
     def main_loop(self):
         mainloop()
@@ -60,6 +84,9 @@ class View(object):
     def register(self, controller):
         """ Register a controller to give callbacks to. """
         self.controller = controller
+
+    def answer(self):
+        self.controller.answer(self.question, self.selected_answer.get())
 
 #==============================================================================
 class Controller(object):
@@ -69,11 +96,22 @@ class Controller(object):
         self.view = view
 
         self.view.register(self)
-        q_and_a = self.model.question_and_answer();
+        q_and_a = self.model.question_and_answer()
+        print(q_and_a)
         self.view.new_question(q_and_a[0], q_and_a[1])
         
-    def answer(self):
-        pass
+    def answer(self, question, answer):
+        correct = self.model.is_correct(question, answer)
+        print(correct)
+
+        print(
+            "We asked: \"" + 
+            question + 
+            "\", you answered: \"" +
+            answer + 
+            "\""
+            )
+
 
 #==============================================================================
 if (__name__ == "__main__"):
