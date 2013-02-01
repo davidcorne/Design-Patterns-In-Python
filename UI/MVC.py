@@ -10,21 +10,33 @@ import random
 class Model(object):
     
     def __init__(self):
-        random.seed()
+        #random.seed()
         # q_and_a is a dictionary where the key is a question and the entry is
         # a list of pairs, these pairs are an answer and whether it is correct
         self.q_and_a = {
+            "How many wives did Henry VIII have?": [
+                ("Five", False),
+                ("Six", True),
+                ("Seven", False),
+                ("Eight", False)
+                ],
             "Is the Earth a sphere?": [
                 ("Yes", True),
                 ("No", False)
                 ],
-            "What's my name?": [
-                ("Dave", True)
+            "A light year is a measure of what?": [
+                ("Energy", False),
+                ("Speed", False),
+                ("Distance", True),
+                ("Intensity", False)
                 ]
             }
 
-    def question_and_answer(self):
-        """ Returns a randomly chosen question and answer as a pair. """
+    def question_and_answers(self):
+        """ 
+        Returns a randomly chosen question (string) and answers (list of 
+        strings)  as a pair.
+        """
         key = random.choice(self.q_and_a.keys())
         return (key, [x[0] for x in self.q_and_a[key]])
 
@@ -45,6 +57,12 @@ class View(object):
 
         self.controller = None
 
+    def clear(self):
+        """ Clears the screen deleteing all widgets. """
+        # clear the screen
+        self.frame.destroy()
+        self.initialise_frame()
+        
     def initialise_frame(self):
         self.frame = Frame(self.parent)
         self.frame.pack()
@@ -58,10 +76,6 @@ class View(object):
           ["Yes", "No"]
         )
         """
-        # clear the screen
-        self.frame.destroy()
-        self.initialise_frame()
-
         # cache the question
         self.question = question
 
@@ -96,6 +110,23 @@ class View(object):
     def answer(self):
         self.controller.answer(self.question, self.selected_answer.get())
 
+    def feedback(self, correct):
+        self.clear()
+        label_text = ""
+        if (correct):
+            label_text = "That is correct."
+        else:     
+            label_text = "Sorry that's wrong."
+        label = Label(self.frame, text=label_text)
+        label.pack()
+        
+        new_question = Button(
+            self.frame,
+            text="Continue",
+            command=self.controller.next_question
+            )
+        new_question.pack()
+
 #==============================================================================
 class Controller(object):
 
@@ -104,11 +135,19 @@ class Controller(object):
         self.view = view
 
         self.view.register(self)
-        q_and_a = self.model.question_and_answer()
+        self.new_question()
+
+    def new_question(self):
+        q_and_a = self.model.question_and_answers()
         self.view.new_question(q_and_a[0], q_and_a[1])
+        
+    def next_question(self):
+        self.view.clear()
+        self.new_question()
         
     def answer(self, question, answer):
         correct = self.model.is_correct(question, answer)
+        self.view.feedback(correct)
 
 #==============================================================================
 if (__name__ == "__main__"):
