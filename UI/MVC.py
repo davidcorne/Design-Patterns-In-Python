@@ -10,7 +10,6 @@ import random
 class Model(object):
     
     def __init__(self):
-        #random.seed()
         # q_and_a is a dictionary where the key is a question and the entry is
         # a list of pairs, these pairs are an answer and whether it is correct
         self.q_and_a = {
@@ -20,9 +19,11 @@ class Model(object):
                 ("Seven", False),
                 ("Eight", False)
                 ],
-            "Is the Earth a sphere?": [
-                ("Yes", True),
-                ("No", False)
+            "In which Italian city is Romeo and Juliet primarily set?": [
+                ("Verona", True),
+                ("Naples", False),
+                ("Milano", False),
+                ("Pisa", False)
                 ],
             "A light year is a measure of what?": [
                 ("Energy", False),
@@ -52,14 +53,13 @@ class View(object):
 
     def __init__(self):
         self.parent = Tk()
-
+        self.parent.title("Trivia")
         self.initialise_frame()
 
         self.controller = None
 
-    def clear(self):
+    def clear_screen(self):
         """ Clears the screen deleteing all widgets. """
-        # clear the screen
         self.frame.destroy()
         self.initialise_frame()
         
@@ -111,7 +111,7 @@ class View(object):
         self.controller.answer(self.question, self.selected_answer.get())
 
     def feedback(self, correct):
-        self.clear()
+        self.clear_screen()
         label_text = ""
         if (correct):
             label_text = "That is correct."
@@ -142,7 +142,7 @@ class Controller(object):
         self.view.new_question(q_and_a[0], q_and_a[1])
         
     def next_question(self):
-        self.view.clear()
+        self.view.clear_screen()
         self.new_question()
         
     def answer(self, question, answer):
