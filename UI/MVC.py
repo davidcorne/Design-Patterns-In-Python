@@ -110,14 +110,9 @@ class View(object):
     def answer(self):
         self.controller.answer(self.question, self.selected_answer.get())
 
-    def feedback(self, correct):
+    def feedback(self, feedback):
         self.clear_screen()
-        label_text = ""
-        if (correct):
-            label_text = "That is correct."
-        else:     
-            label_text = "Sorry that's wrong."
-        label = Label(self.frame, text=label_text)
+        label = Label(self.frame, text=feedback)
         label.pack()
         
         new_question = Button(
@@ -147,7 +142,13 @@ class Controller(object):
         
     def answer(self, question, answer):
         correct = self.model.is_correct(question, answer)
-        self.view.feedback(correct)
+        feedback = ""
+        if (correct):
+            feedback = "That is correct."
+        else:     
+            feedback = "Sorry that's wrong."
+
+        self.view.feedback(feedback)
 
 #==============================================================================
 if (__name__ == "__main__"):
