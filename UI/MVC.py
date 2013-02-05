@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # Written by: DGC
 
-# Inspiration
-# http://www.codeproject.com/Articles/25057/Simple-Example-of-MVC-Model-View-Controller-Design
 from Tkinter import *
 import random
 
@@ -59,7 +57,7 @@ class View(object):
         self.controller = None
 
     def clear_screen(self):
-        """ Clears the screen deleteing all widgets. """
+        """ Clears the screen deleting all widgets. """
         self.frame.destroy()
         self.initialise_frame()
         
@@ -76,28 +74,34 @@ class View(object):
           ["Yes", "No"]
         )
         """
-        # cache the question
-        self.question = question
-
+        self.clear_screen()
         # put the question on as a label
-        question_label = Label(self.frame, text=self.question)
+        question_label = Label(self.frame, text=question)
         question_label.pack()
 
         # put the answers on as a radio buttons
-        self.selected_answer = StringVar()
-        self.selected_answer.set(answers[0])
+        selected_answer = StringVar()
+        selected_answer.set(answers[0])
 
         for answer in answers:
             option = Radiobutton(
                 self.frame,
                 text=answer,
-                variable=self.selected_answer,
+                variable=selected_answer,
                 value=answer,
                 )
             option.pack()
 
-        # new button to confirm
-        button = Button(self.frame, text="Answer", command=self.answer)
+        # button to confirm
+        answer_function = lambda : self.controller.answer(
+            question,
+            selected_answer.get()
+            )
+        button = Button(
+            self.frame,
+            text="Answer",
+            command=answer_function
+            )
         button.pack()
         
     def main_loop(self):
@@ -106,9 +110,6 @@ class View(object):
     def register(self, controller):
         """ Register a controller to give callbacks to. """
         self.controller = controller
-
-    def answer(self):
-        self.controller.answer(self.question, self.selected_answer.get())
 
     def feedback(self, feedback):
         self.clear_screen()
@@ -137,7 +138,6 @@ class Controller(object):
         self.view.new_question(q_and_a[0], q_and_a[1])
         
     def next_question(self):
-        self.view.clear_screen()
         self.new_question()
         
     def answer(self, question, answer):
