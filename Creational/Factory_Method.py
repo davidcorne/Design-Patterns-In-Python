@@ -2,20 +2,6 @@
 # Written by: DGC
 
 #==============================================================================
-class Point(object):
-    """ A 2D point. """
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __eq__(self, point):
-        """ Magic method to overide == operator. """
-        if (type(point) != Point):
-            return False
-        return (self.x == point.x) and (self.y == point.y)
-
-#==============================================================================
 class Line(object):
     """ A non-directed line. """
 
@@ -58,27 +44,34 @@ class Vector(object):
 # Factory functions
 #------------------------------------------------------------------------------
 
-#==============================================================================
-def line_from_point_vector(point, vector):
-    """ Returns the line from travelling vector from point. """
-    return Line(point, Point(point.x + vector.x, point.y + vector.y))
+class Factory(object):
 
-#==============================================================================
-def vector_from_line(line):
-    """ 
-    Returns the directional vector of the line. This is a vector v, such 
-    that line.point_1 + v == line.point_2 
-    """
-    return Vector(
-        line.point_2.x - line.point_1.x, 
-        line.point_2.y - line.point_1.y
-        )
+    @classmethod
+    def line_from_point_vector(self, point, vector):
+        """ Returns the line from travelling vector from point. """
+        new_point = (point[0] + vector.x, point[1] + vector.y)
+        return Line(point, new_point)
+
+    @classmethod
+    def vector_from_line(self, line):
+        """ 
+        Returns the directional vector of the line. This is a vector v, such 
+        that line.point_1 + v == line.point_2 
+        """
+        return Vector(
+            line.point_2.x - line.point_1.x, 
+            line.point_2.y - line.point_1.y
+            )
 
 #==============================================================================
 if (__name__ == "__main__"):
     # make a line from (1, 1) to (1, 0), check that the line made from the 
     # point (1, 1) and the vector (0, -1) is the same line.
-    constructor_line = Line(Point(1, 1), Point(1, 0))
-    factory_line = line_from_point_vector(Point(1, 1), Vector(0, -1))
+    constructor_line = Line((1, 1), (1, 0))
+    vector = Vector(0, -1);
+    factory_line = Factory.line_from_point_vector(
+        (1, 1),
+        vector
+        )
     print(constructor_line == factory_line)
     
