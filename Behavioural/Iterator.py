@@ -17,7 +17,7 @@ class ReverseIterator(object):
         return self
 
     def next(self):
-        """ Return the list backwards so it's noticably different."""
+        """ Return the list backwards so it's noticeably different."""
         if (self.index == 0):
             # the list is over, raise a stop index exception
             raise StopIteration
