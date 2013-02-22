@@ -38,8 +38,8 @@ http://yuml.me/edit/abcf254a
 [BikeBuilder]creates->[Vehicle]
 
 Iterator_general.png
-http://yuml.me/59553d3c
-http://yuml.me/edit/59553d3c
+http://yuml.me/7653a2e6
+http://yuml.me/edit/7653a2e6
 
 // General Iterator Pattern
-[Collection|__len__();__getitem__(key);...|]<>->[Iterator|__iter__();next()|]
+[Iterator|__iter__();next()|collection]<>->[Collection|__len__();__getitem__(key);...|]
