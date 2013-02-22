@@ -41,6 +41,7 @@ class Days(object):
     def reverse_iter(self):
         return ReverseIterator(self.days)
 
+#==============================================================================
 if (__name__ == "__main__"):
     days = Days()
     for day in days.reverse_iter():
