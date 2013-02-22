@@ -1,42 +1,41 @@
 #!/usr/bin/env python
 # Written by: DGC
 
-import abc
+#
+##==============================================================================
+#class ImmutableContainer(object):
+#    __metaclass__ = abc.ABCMeta
+#
+#    @abc.abstractmethod
+#    def __len__(self):
+#        raise
+#    
+#    @abc.abstractmethod
+#    def __getitem__(self, key):
+#        raise
+#    
+##==============================================================================
+#class MutableContainer(ImmutableContainer):
+#    __metaclass__ = abc.ABCMeta
+#
+#    @abc.abstractmethod
+#    def __setitem__(self, key, value):
+#        raise
+#
+#    @abc.abstractmethod
+#    def __delitem__(self, key):
+#        raise
+#
+##==============================================================================
+#class Iterable(object):
+#    __metaclass__ = abc.ABCMeta
+#
+#    @abc.abstractmethod
+#    def __iter__(self):
+#        raise
 
 #==============================================================================
-class ImmutableContainer(object):
-    __metaclass__ = abc.ABCMeta
-
-    @abc.abstractmethod
-    def __len__(self):
-        raise
-    
-    @abc.abstractmethod
-    def __getitem__(self, key):
-        raise
-    
-#==============================================================================
-class MutableContainer(ImmutableContainer):
-    __metaclass__ = abc.ABCMeta
-
-    @abc.abstractmethod
-    def __setitem__(self, key, value):
-        raise
-
-    @abc.abstractmethod
-    def __delitem__(self, key):
-        raise
-
-#==============================================================================
-class Iterable(object):
-    __metaclass__ = abc.ABCMeta
-
-    @abc.abstractmethod
-    def __iter__(self):
-        raise
-
-#==============================================================================
-class ReverseIterator(Iterable):
+class ReverseIterator(object):
     """ 
     Iterates the object given to it in reverse so it shows the difference. 
     """
@@ -51,15 +50,18 @@ class ReverseIterator(Iterable):
         return self
 
     def next(self):
-        " Return the list backwards so it's noticably different."
+        """ Return the list backwards so it's noticably different."""
         if (self.index == 0):
             # the list is over, raise a stop index exception
             raise StopIteration
         self.index = self.index - 1
         return self.list[self.index]
 
-if (__name__ == "__main__"):
-    days = [
+#==============================================================================
+class Days(object):
+
+    def __init__(self):
+        self.days = [
         "Monday",
         "Tuesday", 
         "Wednesday", 
@@ -68,6 +70,11 @@ if (__name__ == "__main__"):
         "Saturday", 
         "Sunday"
         ]
-    it = ReverseIterator(days)
-    for day in it:
+
+    def reverse_iter(self):
+        return ReverseIterator(self.days)
+
+if (__name__ == "__main__"):
+    days = Days()
+    for day in days.reverse_iter():
         print(day)
