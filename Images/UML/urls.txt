@@ -43,3 +43,11 @@ http://yuml.me/edit/7653a2e6
 
 // General Iterator Pattern
 [Iterator|__iter__();next()|collection]<>->[Collection|__len__();__getitem__(key);...|]
+
+Iterator specific
+http://yuml.me/b8a2a966
+http://yuml.me/edit/b8a2a966
+
+// Specific Iterator Pattern
+[ReverseIterator|__iter__();next()|list;index]<>->[list]
+[Days|reverse_iter()|days]<>->[list]
