@@ -1,39 +1,6 @@
 #!/usr/bin/env python
 # Written by: DGC
 
-#
-##==============================================================================
-#class ImmutableContainer(object):
-#    __metaclass__ = abc.ABCMeta
-#
-#    @abc.abstractmethod
-#    def __len__(self):
-#        raise
-#    
-#    @abc.abstractmethod
-#    def __getitem__(self, key):
-#        raise
-#    
-##==============================================================================
-#class MutableContainer(ImmutableContainer):
-#    __metaclass__ = abc.ABCMeta
-#
-#    @abc.abstractmethod
-#    def __setitem__(self, key, value):
-#        raise
-#
-#    @abc.abstractmethod
-#    def __delitem__(self, key):
-#        raise
-#
-##==============================================================================
-#class Iterable(object):
-#    __metaclass__ = abc.ABCMeta
-#
-#    @abc.abstractmethod
-#    def __iter__(self):
-#        raise
-
 #==============================================================================
 class ReverseIterator(object):
     """ 
