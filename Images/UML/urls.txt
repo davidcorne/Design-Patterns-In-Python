@@ -36,3 +36,10 @@ http://yuml.me/edit/abcf254a
 [VehicleBuilder]^-.-[CarBuilder| vehicle|make_wheels();make_doors();make_seats()]
 [CarBuilder]creates->[Vehicle| type;wheels;doors;seats | view() ]
 [BikeBuilder]creates->[Vehicle]
+
+Iterator_general.png
+http://yuml.me/59553d3c
+http://yuml.me/edit/59553d3c
+
+// General Iterator Pattern
+[Collection|__len__();__getitem__(key);...|]<>->[Iterator|__iter__();next()|]
