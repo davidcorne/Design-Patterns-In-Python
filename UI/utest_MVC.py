@@ -53,6 +53,70 @@ class utest_MVC(unittest.TestCase):
             "Sorry that's wrong.", 
             "The feedback for an incorrect answer is wrong."
             )
+        
+    def test_view(self):
+        view = MVC.View()
+        controller = ControllerMock(view)
+        view.register(controller)
+
+        self.assertIs(
+            view.answer_button, 
+            None,
+            "The answer button should not be set."
+            )
+        self.assertIs(
+            view.continue_button,
+            None,
+            "The continue button should not be set."
+            )
+        view.new_question("Test", ["correct", "incorrect"])
+        
+        self.assertIsNot(
+            view.answer_button, 
+            None,
+            "The answer button should be set."
+            )
+        self.assertIs(
+            view.continue_button,
+            None,
+            "The continue button should not be set."
+            )
+        # simulate a button press
+        view.answer_button.invoke()
+        self.assertIs(
+            view.answer_button, 
+            None,
+            "The answer button should not be set."
+            )
+        self.assertIsNot(
+            view.continue_button,
+            None,
+            "The continue button should be set."
+            )
+
+        self.assertEqual(
+            controller.question,
+            "Test",
+            "The question asked should be \"Test\"."
+            )
+        self.assertEqual(
+            controller.answer,
+            "correct",
+            "The answer given should be \"correct\"."
+            )
+        
+        # continue
+        view.continue_button.invoke()
+        self.assertIsNot(
+            view.answer_button, 
+            None,
+            "The answer button should be set."
+            )
+        self.assertIs(
+            view.continue_button,
+            None,
+            "The continue button should not be set."
+            )
 
 #==============================================================================
 class ViewMock(object):
@@ -78,6 +142,21 @@ class ModelMock(object):
         if (answer == "correct"):
             correct = True
         return correct
+
+#==============================================================================
+class ControllerMock(object):
+    
+    def __init__(self, view):
+        self.view = view
+
+    def answer(self, question, answer):
+        self.question = question
+        self.answer = answer
+        self.view.feedback("test")
+
+    def next_question(self):
+        self.view.new_question("Test", ["correct", "incorrect"])
+    
 
 #==============================================================================
 if (__name__ == "__main__"):
