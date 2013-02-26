@@ -52,16 +52,20 @@ class View(object):
     def __init__(self):
         self.parent = Tk()
         self.parent.title("Trivia")
-        self.initialise_frame()
+
+        self.initialise_ui()
 
         self.controller = None
 
     def clear_screen(self):
         """ Clears the screen deleting all widgets. """
         self.frame.destroy()
-        self.initialise_frame()
+        self.initialise_ui()
         
-    def initialise_frame(self):
+    def initialise_ui(self):
+        self.answer_button = None
+        self.continue_button = None
+
         self.frame = Frame(self.parent)
         self.frame.pack()
 
@@ -97,12 +101,12 @@ class View(object):
             question,
             selected_answer.get()
             )
-        button = Button(
+        self.answer_button = Button(
             self.frame,
             text="Answer",
             command=answer_function
             )
-        button.pack()
+        self.answer_button.pack()
         
     def main_loop(self):
         mainloop()
@@ -116,12 +120,12 @@ class View(object):
         label = Label(self.frame, text=feedback)
         label.pack()
         
-        new_question = Button(
+        self.continue_button = Button(
             self.frame,
             text="Continue",
             command=self.controller.next_question
             )
-        new_question.pack()
+        self.continue_button.pack()
 
 #==============================================================================
 class Controller(object):
