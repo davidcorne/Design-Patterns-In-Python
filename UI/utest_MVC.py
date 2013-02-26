@@ -4,46 +4,53 @@
 # python imports
 
 # local imports
-from test import *
+import unittest
+
 import MVC
 
 #==============================================================================
-class utest_MVC(UnitTest):
+class utest_MVC(unittest.TestCase):
     
-    def __init__(self):
-        super(utest_MVC, self).__init__()
-
-    def model_test(self):
+    def test_model(self):
         model = MVC.Model()
         question, possible_answers = model.question_and_answers()
 
         # can't test what they are because they're random
-        test(isinstance(question, str), "Question should be a string")
-        test(isinstance(possible_answers, list), "Answers should be a list")
+        self.assertTrue(
+            isinstance(question, str),
+            "Question should be a string"
+            )
+        self.assertTrue(
+            isinstance(possible_answers, list),
+            "Answers should be a list"
+            )
 
         for item in possible_answers:
-            test(
+            self.assertTrue(
                 isinstance(item[0], str),
                 "Elements of possible answer list should be strings"
                 )
 
-    def controller_test(self):
+    def test_controller(self):
         model = ModelMock()
         view = ViewMock()
         controller = MVC.Controller(model, view)
         controller.new_question()
-        test(
-            view.question == "Question", 
+        self.assertEqual(
+            view.question,
+            "Question", 
             "Controller should pass the question to the view."
             )
         controller.answer("Question", "correct")
-        test(
-            controller.view.mock_feedback == "That is correct.", 
+        self.assertEqual(
+            controller.view.mock_feedback,
+            "That is correct.", 
             "The feedback for a correct answer is wrong."
             )
         controller.answer("Question", "incorrect")
-        test(
-            controller.view.mock_feedback == "Sorry that's wrong.", 
+        self.assertEqual(
+            controller.view.mock_feedback,
+            "Sorry that's wrong.", 
             "The feedback for an incorrect answer is wrong."
             )
 
@@ -74,4 +81,4 @@ class ModelMock(object):
 
 #==============================================================================
 if (__name__ == "__main__"):
-    utest_MVC()
+    unittest.main(verbosity=2)
