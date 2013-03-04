@@ -2,7 +2,7 @@
 
 OPTIONS = -s --toc --toc-depth=2 --highlight-style haddock 
 SOURCE_NAME = Design_Patterns_In_Python
-OUTPUT_NAME = $(shell echo $(SOURCE_NAME) | sed -e 's/ /_/g')
+OUTPUT_NAME = Design_Patterns_In_Python
 
 #==============================================================================
 all: $(OUTPUT_NAME).epub $(OUTPUT_NAME).pdf $(OUTPUT_NAME).html
@@ -11,19 +11,19 @@ all: $(OUTPUT_NAME).epub $(OUTPUT_NAME).pdf $(OUTPUT_NAME).html
 #==============================================================================
 $(OUTPUT_NAME).html: $(SOURCE_NAME).md
 	@echo -e "Making html."
-	@pandoc $< $(OPTIONS) -o $@
+	pandoc $< $(OPTIONS) -o $@
 	@echo -e "html made.\n"
 
 #==============================================================================
 $(OUTPUT_NAME).pdf: $(SOURCE_NAME).md
 	@echo -e "Making pdf."
-	@pandoc $< $(OPTIONS) -o $@
+	pandoc $< $(OPTIONS) -o $@
 	@echo -e "pdf made.\n"
 
 #==============================================================================
 $(OUTPUT_NAME).epub: $(SOURCE_NAME).md
 	@echo -e "Making epub."
-	@pandoc $< $(OPTIONS) -o $@
+	pandoc $< $(OPTIONS) -o $@
 	@echo -e "epub made.\n"
 
 #==============================================================================
