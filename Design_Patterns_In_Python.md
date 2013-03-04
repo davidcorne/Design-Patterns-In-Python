@@ -168,7 +168,7 @@ if (__name__ == "__main__"):
 
 The calling code uses one VehicleManufacturer to build both a car and a bike. The output of this code is given below.
 
-```python
+```pycon
 This vehicle is a Car  with; 4 wheels, 3 doors, and 5 seats.
 This vehicle is a Bike with; 2 wheels, 0 doors, and 2 seats.
 ```
@@ -289,7 +289,7 @@ if (__name__ == "__main__"):
 ```
 
 The output of this program is the following;
-```python
+```pycon
 Engine Not Started.
 Jumped
 Engine Started.
@@ -325,7 +325,7 @@ for number in list:
 ```
 
  Which gives the following output.
-```python
+```pycon
 one
 two
 three
@@ -510,7 +510,7 @@ My reason for not doing this is that this does not make it clear that you are re
 
 The output from either of these is.
 
-```python
+```pycon
 Sunday
 Saturday
 Friday
