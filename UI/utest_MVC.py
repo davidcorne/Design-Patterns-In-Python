@@ -2,10 +2,9 @@
 # Written by: DGC
 
 # python imports
-
-# local imports
 import unittest
 
+# local imports
 import MVC
 
 #==============================================================================
