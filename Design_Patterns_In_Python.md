@@ -191,21 +191,18 @@ The specific UML for this example is this.
 ## Composite ##
 ## Decorator ##
 ## Facade ##
-###The Purpose###
+### The Purpose ###
 
 The facade pattern is used to make one object with a simple interface represent a complicated system. The problem often occurs in programming where you have a series of interconnected classes where the functions must be called in a certain order or have complicated interdependencies.
 
 This pattern is to give a standard interface to such a system, so you don't have to rely on reading how you call the system in one of the files or look at example usage.
-<!--more-->
+
 ### The Pattern ###
-Here is a <a href="http://en.wikipedia.org/wiki/Unified_Modeling_Language" target="_blank">UML</a> diagram representing the pattern.
+Here is a UML diagram representing the pattern.
 
 <!--
 [caption width="380" align="aligncenter"]<a href="http://www.dofactory.com/Patterns/Diagrams/facade.gif"><img src="http://www.dofactory.com/Patterns/Diagrams/facade.gif" width="380" height="272" class /></a> UML for Facade pattern[/caption]
 -->
-UML is a very useful tool however I have not used a lot yet. It provides a (mostly) standardised way of representing system structure for object oriented programming. I intend to use a UML diagram to represent each pattern in this series, I will explain them so hopefully you don't need to know UML to follow what's going on.
-
-This is a nice and simple UML diagram with the following elements; the facade box represents a class, the boxes in the subsystem box could be any object such as a class or a function and the lines between them indicate some relationship.
 
 This shows that the pattern is just one class which groups together a lot of other objects and uses them in some way.
 
@@ -312,10 +309,9 @@ All of the code for this series can be found in <a href="https://github.com/davi
 ## Interpreter ##
 ## Iterator ##
 This post will be about the Iterator pattern which is a behavioural pattern.
+
 ###The Purpose###
 The idea behind this pattern is to have an object which you can loop over without needing to know the internal representation of the data. While in python nothing is private so you can find out the internals of the class, the iterator pattern gives you a standard interface.
-
-<!--more-->
 
 I think the best example of an iterator in python is using a list. As I'm sure you know this is how you would iterate over a list in python.
 ```python
@@ -333,7 +329,7 @@ three
 
 The goal of this pattern in python is to be able to do that with a user defined class.
 
-###The Pattern###
+### The Pattern ###
 
 This is quite a small pattern so I will focus more on the implementation detail than the design. 
 
@@ -353,7 +349,8 @@ They focus on pythons magic methods, which are those with double underscores sur
 
 I'm going to briefly talk about the protocols for mutable and immutable containers, and iterators.
 
-<h3>Immutable Containers</h3>
+####Immutable Containers####
+
 An immutable container is one where you cannot change the individual items. For this you only need to be able to get the length of it and access individual items. 
 
 The python magic methods for an immutable container are.
@@ -372,7 +369,7 @@ def __getitem__(self, key):
 
 Again the exceptions mentioned in __getitem__ are convention, but it's important for writing idiomatic python.
 
-<h3>Mutable Containers</h3>
+####Mutable Containers####
 As you might expect a mutable container has the same methods for accessing items as an immutable container, but adds ways of setting or adding them.
 
 Here are the magic methods.
@@ -412,7 +409,7 @@ For an immutable container you probably want to have some way of adding elements
 
 There are other functions you can add such as __reversed__(self) and __contains__(self, item) but they are not needed for core functionality. They are very well described <a href="http://www.rafekettler.com/magicmethods.html#sequence" target="_blank">here</a>.
 
-<h3>Iterators</h3>
+####Iterators####
 
 The protocol for an iterator is very simple.
 
@@ -716,7 +713,7 @@ Here is the specific UML diagram for these.
 
 The code for this implementation is found in <a href="https://github.com/davidcorne/Design-Patterns-In-Python/blob/master/Behavioural/Strategy_old.py" target="_blank">this file</a>.
 
-<h3> Second Example </h3>
+__Second Example__
 
 The previous example is more how you would implement this pattern in a statically typed language such as C++ or C#. This is a more pythonic approach which will take some advise I heard in a talk; classes with only a __init__ function and one other function are functions in disguise. As functions are first class objects in python there is a lot we can do with them and I believe this gives a more pythonic variant of the strategy pattern.
 
