@@ -1,9 +1,40 @@
-# Targets
-TEX_NAME = Design_Patterns_In_Python
+# Builds the e-book in multiple formats
+
+OPTIONS = -s --toc --toc-depth=2 --highlight-style haddock 
+SOURCE_NAME = Design_Patterns_In_Python
+OUTPUT_NAME = $(shell echo $(SOURCE_NAME) | sed -e 's/ /_/g')
 
 #==============================================================================
-all: open
-	@true
+all: $(OUTPUT_NAME).epub $(OUTPUT_NAME).pdf $(OUTPUT_NAME).html
+	@echo -e "All made"
 
-include $(DROPBOX)/Coding/MakeFiles/latex.mk
-# override OUTPUT_NAME here
+#==============================================================================
+$(OUTPUT_NAME).html: $(SOURCE_NAME).md
+	@echo -e "Making html."
+	@pandoc $< $(OPTIONS) -o $@
+	@echo -e "html made.\n"
+
+#==============================================================================
+$(OUTPUT_NAME).pdf: $(SOURCE_NAME).md
+	@echo -e "Making pdf."
+	@pandoc $< $(OPTIONS) -o $@
+	@echo -e "pdf made.\n"
+
+#==============================================================================
+$(OUTPUT_NAME).epub: $(SOURCE_NAME).md
+	@echo -e "Making epub."
+	@pandoc $< $(OPTIONS) -o $@
+	@echo -e "epub made.\n"
+
+#==============================================================================
+clean: FRC
+# remove the temporary files
+	@rm -f *.pdf *.pyc *.html *.epub
+	@echo "Removed all: pdfs, html, epubs and temp files."
+
+#==============================================================================
+#D Pseudo target causes all targets that depend on FRC to be remade even in 
+#D case a file with the name of the target exists. Works unless there is a file
+#D called FRC in the directory.
+#------------------------------------------------------------------------------
+FRC:

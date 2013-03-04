@@ -16,6 +16,7 @@ debug.log
 # ignore the finished product, attach as a download later
 *.pdf
 *.html
+*.epub
 
 # ignore the C++ examples I've made to better my understanding
 C++/*
