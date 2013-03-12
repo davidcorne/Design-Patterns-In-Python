@@ -2,10 +2,6 @@
 % or how I learned to stop worrying and love the gang of four
 % David Corne
 
-<!--- This is a test for writing this in markdown. --->
-<!---# Design Patterns in Python #
-## or how I learned to stop worrying and love the gang of four ##
---->
 # Introduction #
 This is inspired by the aptly titled *Design Patterns: Elements of Reusable Object-Oriented Software* by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides who are collectively known as the Gang of Four (GOF).
 
@@ -21,7 +17,7 @@ Why do I want to do this? I want to write this to pass on some knowledge which I
 ### The Purpose ###
 The idea behind the builder pattern is to abstract away the construction of an object so that many implementations can use the same builder. This separates the construction logic of the desired class from it's representation. 
 
-###The Pattern ###
+### The Pattern ###
 Here is a general UML diagram for this
 
 ![General Builder Pattern](Images/UML/Builder_general.png "General Builder Pattern")
