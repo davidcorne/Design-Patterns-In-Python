@@ -20,6 +20,27 @@ class MonoState2(object):
     pass
 
 def add_monostate_property(cls, name, initial_value):
+    """
+    Adds a property "name" to the class "cls" (should pass in a class object 
+    not a class instance) with the value "initial_value".
+    
+    This property is a monostate property so all instances of the class will 
+    have the same value property. You can think of it being a singleton 
+    property, the class instances will be different but the property will 
+    always be the same.
+
+    This will add a variable __"name" to the class which is the internal 
+    storage for the property.
+
+    Example usage:
+    class MonoState(object):
+        pass
+        
+    add_monostate_property(MonoState, "data", 5)
+    m = MonoState()
+    # returns 5
+    m.data
+    """
     internal_name = "__" + name
 
     def getter(self):
