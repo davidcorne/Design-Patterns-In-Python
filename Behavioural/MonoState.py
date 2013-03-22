@@ -48,14 +48,14 @@ if (__name__ == "__main__"):
 
     print("")
     print("")
+
     print("Dynamically adding the property:")
     add_monostate_property(MonoState2, "data", 5)
-    dynamic_1 = MonoState()
+    dynamic_1 = MonoState2()
     print("First data:  " + str(dynamic_1.data))
     dynamic_1.data = 4
-    dynamic_2 = MonoState()
+    dynamic_2 = MonoState2()
     print("Second data: " + str(dynamic_2.data))
     print("First instance:  " + str(dynamic_1))
     print("Second instance: " + str(dynamic_2))
     print("These are not singletons, so these are different instances")
-
