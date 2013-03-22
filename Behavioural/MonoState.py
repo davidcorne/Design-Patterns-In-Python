@@ -21,11 +21,11 @@ class MonoState(object):
 #==============================================================================
 if (__name__ == "__main__"):
     m_1 = MonoState()
-    print("First data: " + str(m_1.data))
+    print("First data:  " + str(m_1.data))
     m_1.data = 4
     m_2 = MonoState()
     print("Second data: " + str(m_2.data))
-    # not a singleton, so these are different instances
-    print("First instance: " + str(m_1))
+    print("First instance:  " + str(m_1))
     print("Second instance: " + str(m_1))
+    print("These are not singletons, so these are different instances")
     
