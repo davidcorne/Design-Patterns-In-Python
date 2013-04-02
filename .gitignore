@@ -14,9 +14,7 @@ debug.log
 *.synctex.gz
 
 # ignore the finished product, attach as a download later
-*.pdf
-*.html
-*.epub
+Output/*
 
 # ignore the C++ examples I've made to better my understanding
 C++/*

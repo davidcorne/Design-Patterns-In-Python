@@ -5,7 +5,7 @@ SOURCE_NAME = Design_Patterns_In_Python
 OUTPUT_NAME = Output/Design_Patterns_In_Python
 
 #==============================================================================
-all: $(OUTPUT_NAME).epub $(OUTPUT_NAME).pdf $(OUTPUT_NAME).html
+all: $(OUTPUT_NAME).epub $(OUTPUT_NAME).pdf $(OUTPUT_NAME).html FAKE_IMAGES
 	@echo -e "All made"
 
 #==============================================================================
@@ -28,6 +28,10 @@ $(OUTPUT_NAME).epub: $(SOURCE_NAME).md
 	@echo -e "Making epub."
 	pandoc $< $(OPTIONS) -o $@
 	@echo -e "epub made.\n"
+
+FAKE_IMAGES: 
+	@cp -r Images Output/
+	@echo "Images copied."
 
 #==============================================================================
 clean: FRC
