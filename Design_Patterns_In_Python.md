@@ -22,18 +22,18 @@ Here is a general UML diagram for this
 
 ![General Builder Pattern](Images/UML/Builder_general.png "General Builder Pattern")
 
-So the object you are interested in creating is the class Product in this scenario. The class which you call to deal with this is the Director.
+So the object you are interested in creating is the class `Product` in this scenario. The class which you call to deal with this is the `Director`.
 
-The Director keeps a member which implements the Builder interface and calls this in it's create() method. This member is one of the ConcreteBuilder classes and has the logic needed for the creation of the specific Product you want.
+The `Director` keeps a member which implements the `Builder` interface and calls this in it's `create()` method. This member is one of the `ConcreteBuilder` classes and has the logic needed for the creation of the specific `Product` you want.
 
-This abstracts the logic needed to create different types of Product. The Product may also be an interface and each ConcreteBuilder may return a different type.
+This abstracts the logic needed to create different types of `Product`. The `Product` may also be an interface and each `ConcreteBuilder` may return a different type.
 
-The Builder is typically set either with a function, where the Director class is responsible for the logic of the ConcreteBuilder creation, or by passing a ConcreteBuilder directly to the Director.
+The `Builder` is typically set either with a function, where the `Director` class is responsible for the logic of the `ConcreteBuilder` creation, or by passing a `ConcreteBuilder` directly to the `Director`.
 
 ### An Example Usage ###
 This will use the example of building different types of vehicles. The code for this example is all contained in <!--- <a href="https://github.com/davidcorne/Design-Patterns-In-Python/blob/master/Structural/Builder.py" target="_blank">this file</a>. --->
 
-The Product here is a Vehicle which is defined as the following class.
+The Product here is a `Vehicle` which is defined as the following class.
 
 ```python
 #==============================================================================
@@ -59,9 +59,9 @@ class Vehicle(object):
             )
 ```
 
-So different Vehicles can have different names, numbers of wheels doors and seats. The method view() will print a summery of what the Vehicle is.
+So different `Vehicles` can have different names, numbers of wheels doors and seats. The method `view()` will print a summery of what the `Vehicle` is.
 
-The construction of instances of Vehicle will be handles by the ConcreteBuilder classes. These should derive from a Builder interface (abstract class) so here is the base class VehicleBuilder.
+The construction of instances of `Vehicle` will be handles by the `ConcreteBuilder` classes. These should derive from a `Builder` interface (abstract class) so here is the base class `VehicleBuilder`.
 
 ```python
 #==============================================================================
@@ -86,7 +86,7 @@ class VehicleBuilder(object):
 
 This uses the <a href="http://docs.python.org/2/library/abc.html" target="_blank">abc</a> module just like the first version of PrimeFinder in my <a href="http://davidcorne.com/2013/01/21/strategy-pattern/" target="_blank">strategy pattern</a> post.
 
-So with this Builder there are three functions for setting up the Vehicle. For the ConcreteBuilders there is a CarBuilder and a BikeBuilder, both of which inherit from VehicleBuilder. Here are the implementations of these classes.
+So with this `Builder` there are three functions for setting up the `Vehicle`. For the `ConcreteBuilders` there is a `CarBuilder` and a `BikeBuilder`, both of which inherit from `VehicleBuilder`. Here are the implementations of these classes.
 
 ```python
 #==============================================================================
@@ -120,7 +120,7 @@ class BikeBuilder(VehicleBuilder):
         self.vehicle.seats = 2
 ```
 
-The only logic in these is the creation of the vehicle object and setting the properties on it. Now to use these we need a Director class to call. For this example the Director is called VehicleManufacturer.
+The only logic in these is the creation of the `vehicle` member and setting the properties on it. Now to use these we need a Director class to call. For this example the Director is called `VehicleManufacturer`.
 
 ```python
 #==============================================================================
@@ -144,7 +144,7 @@ class VehicleManufacturer(object):
         return self.builder.vehicle
 ```
 
-VehicleManufacturer has a create() function which contains the calling code used with the Builder. However as you can see from the docstring and the code this has a precondition of self.builder being set. This means that if you have not given the Director a ConcreteBuilder to use, it cannot create a Vehicle.
+`VehicleManufacturer` has a `create()` function which contains the calling code used with the Builder. However as you can see from the docstring and the code this has a precondition of self.builder being set. This means that if you have not given the Director a ConcreteBuilder to use, it cannot create a Vehicle.
 
 So this class is called like so.
 
