@@ -6,27 +6,29 @@
 # local imports
 
 #==============================================================================
-class RAII(object):
+class Box(object):
     
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
 
     def __enter__(self):
-        print("Resource Allocated")
+        print("Box " + self.name + " Opened")
+        return self
 
-    def __exit__(self, exception_type, exception_value, traceback):
+    def __exit__(self, exception_type, exception, traceback):
         all_none = all(
-            arg is None for arg in [exception_type, exception_value, traceback]
+            arg is None for arg in [exception_type, exception, traceback]
             )
         if (not all_none):
-            print("Exception: " + str(exception_type) + " raised")
-        print("Resource Freed")
+            print("Exception: \"%s\" raised." %(str(exception)))
+        print("Box Closed")
         print("")
+        return all_none
 
 #==============================================================================
 if (__name__ == "__main__"):
-    with RAII() as r:
-        pass
-    with RAII() as r:
-        raise Exception
+    with Box("tupperware") as simple_box:
+        print("Nothing in " + simple_box.name)
+    with Box("Pandora's") as pandoras_box:
+        raise Exception("All the evils in the world")
     print("end")
